@@ -3,25 +3,32 @@ This is a very basic personal weather website using Flask.
 Pulls weather from NOAA API while using MapBox to locate Latitude and Longitude coordinates.
 I plan to keep working on this site as I learn other skills.
 
-## Config.yaml
-The config.yaml file holds the MapBox API key that needs to be provided.
-The file should be formatted like so:
+## Configuration
+There are two environment variables to set to configure the app:
 
-```yaml
----
-# Configuration File for weather-app.py
-mapbox_api:
-  key: "<your-api-key-here>"
-  ```
+    SECRET_KEY=<FLASK_SECRET_KEY>
+    MAPBOX_KEY_API=<API_KEY_FOR_MAPBOX_API>
 
-The file should be in the top level directory of the project. 
+The easiest way is to create a file `web.env` with the above contents and source it in whichever way you choose to run the app.
 
 ## Running the app
-1. clone git repo
-2. Create a config.yaml file. You will need a free API key from mapbox.com
-3. pipenv install
-4. pipenv shell
-5. source env_setup.sh (this just sets environment variables)
-6. flask run
-
-If you open your browser to http://127.0.0.1:5000 you should get the webpage
+### With Docker
+1. Bring up the container
+        `docker container run -p 5000:5000 --env-file web.env  davebrown/flask-weather-app:latest`
+2. Access the site at http://127.0.0.1:5000.
+### With Docker-compose
+1. Bring up the container
+        `docker-compose up`
+2. Access the site at http://127.0.0.1:5000.
+### Locally
+1. Clone the repo
+2. Create a `web.env` file. You will need a free API key from mapbox.com
+3. Install dependencies.  
+	`pipenv install`
+4. Activate the environment. 
+	`pipenv shell`
+5. Set environmental variables. 
+	`source web.env`
+6. Start the server. 
+	`flask run`
+7. Access the site at http://127.0.0.1:5000.

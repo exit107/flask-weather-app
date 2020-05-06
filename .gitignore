@@ -1,9 +1,10 @@
-#config file
-config.yaml
+# config files
+config/*
+*.env
 
-#vscode
+# vscode
 .vscode/
 
-#ignore venv
-weather-app/
-__pycache__/
+# ignore venv
+weather-app
+__pycache__

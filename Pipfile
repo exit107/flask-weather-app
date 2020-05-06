@@ -12,6 +12,7 @@ mapbox = "*"
 pyyaml = "*"
 flask-wtf = "*"
 icecream = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.6"

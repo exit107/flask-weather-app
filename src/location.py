@@ -1,7 +1,6 @@
 import json 
 import sys
 
-from icecream import ic
 from mapbox import Geocoder
 import requests
 from requests.exceptions import HTTPError, Timeout
@@ -23,9 +22,7 @@ class Location:
     def location_as_zip(self, zipcode, api_key):
         geocoder = Geocoder(access_token=api_key)
         response = geocoder.forward(zipcode, country=['us'])
-        ic({response.status_code})
         # Get Zipcode Center Latitude and Longitude from Mapbox
-        ic(response.json()['features'][0]['center'])
         self.city = response.json()['features'][0]['context'][0]['text']
         self.state = response.json()['features'][0]['context'][1]['text']
         self.coordinates = response.json()['features'][0]['center']
@@ -37,7 +34,6 @@ class Location:
         try:
             r = requests.get(f'https://api.weather.gov/points/{self.coordinates[1]},{self.coordinates[0]}', headers=self.headers, timeout=5)
             r.raise_for_status()
-            ic({r.status_code}) 
             forecast_request_url = r.json()['properties']['forecast']
             return forecast_request_url
 
@@ -60,7 +56,6 @@ class Location:
         try:
             forecast = requests.get(url = self.forecast_zone, headers=self.headers, timeout=5)
             forecast.raise_for_status()
-            ic({forecast.status_code}) 
             return forecast.json()
 
         except Timeout:
