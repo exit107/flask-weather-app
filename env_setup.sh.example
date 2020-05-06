@@ -1,9 +1,0 @@
-#!/bin/bash
-
-# sets up the flask env
-export FLASK_APP=src/weather_app.py
-export FLASK_DEBUG=1
-
-# Set some application variables
-export SECRET_KEY='<SUPER_SECRET_KEY_HERE>'
-export MAPBOX_API_KEY='<SUPER_SECRET_KEY_HERE>'
